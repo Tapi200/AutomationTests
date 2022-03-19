@@ -66,7 +66,7 @@ namespace PlanitAutomationTesting.UIPages
         {
             driver.FindElement(txtForename).SendKeys("");
             driver.FindElement(txtEmail).SendKeys("worked.example");
-            driver.FindElement(txtMessage).SendKeys("");
+            driver.FindElement(txtMessage).SendKeys(Keys.Enter);
         }
 
         public void ClickSubmitButton() => driver.FindElement(btnSubmit).Click();

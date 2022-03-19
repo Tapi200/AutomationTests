@@ -37,7 +37,7 @@ namespace PlanitAutomationTesting
         {
             Assert.IsTrue(HomePage.IsForenameErrorDisplayed(), "No validation error for the forename field");
             Assert.IsTrue(HomePage.IsEmailErrorDisplayed(), "No validation error for the email field");
-            Assert.IsTrue(HomePage.IsEmailErrorDisplayed(), "No validation error for the message field");
+            Assert.IsTrue(HomePage.IsMessageErrorDisplayed(), "No validation error for the message field");
         }
 
         [Given(@"has populated mandatory fields")]
@@ -55,9 +55,9 @@ namespace PlanitAutomationTesting
         [Then(@"the validation errors are not displayed")]
         public void ThenTheValidationErrorsAreNotDisplayed()
         {
-            Assert.IsFalse(HomePage.IsForenameErrorDisplayed());
-            Assert.IsFalse(HomePage.IsEmailErrorDisplayed());
-            Assert.IsFalse(HomePage.IsEmailErrorDisplayed());
+            Assert.IsFalse(HomePage.IsForenameErrorDisplayed(), "There is a validation error for the forename field");
+            Assert.IsFalse(HomePage.IsEmailErrorDisplayed(), "There is a validation error for the Email field");
+            Assert.IsFalse(HomePage.IsMessageErrorDisplayed(), "There is a validation error for the Message field");
 
             HomePage.CloseBrowser();
         }
@@ -116,9 +116,9 @@ namespace PlanitAutomationTesting
         [Then(@"validation errors are populated")]
         public void ThenValidationErrorsArePopulated()
         {
-            Assert.IsTrue(HomePage.IsForenameErrorDisplayed());
-            Assert.IsTrue(HomePage.IsEmailErrorDisplayed());
-            Assert.IsTrue(HomePage.IsEmailErrorDisplayed());
+            Assert.IsTrue(HomePage.IsForenameErrorDisplayed(), "No validation error displayed for the Forename field");
+            Assert.IsTrue(HomePage.IsEmailErrorDisplayed(), "No validation error displayed for the Email field");
+            Assert.IsTrue(HomePage.IsMessageErrorDisplayed(), "No validation error displayed for the Message field");
 
             HomePage.CloseBrowser();
         }
