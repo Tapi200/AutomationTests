@@ -1,66 +1,83 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace PlanitAutomationTesting.UIPages
 {
     public class ContactPage
     {
-        //readonly IWebDriver driver = new HomePage().driver;
+        IWebDriver driver = new HomePage().driver;
 
-        //private readonly By txtForename = By.Id("forename"); 
-        //private readonly By txtForename1 = By.XPath("//*[@id='forename']");
-        //private readonly By txtSurname = By.Id("surname");
-        //private readonly By txtEmail = By.Id("email");
-        //private readonly By txtTelephone = By.Id("telephone");
-        //private readonly By txtMessage = By.Id("message");
-        //private readonly By btnSubmit = By.Id("surname");
-        //private readonly By forenameErr = By.Id("forename-err");
-        //private readonly By emailErr = By.Id("email-err");
-        //private readonly By messageErr = By.Id("message-err");
-        //public void CompleteContactForm()
-        //{
-        //    driver.FindElement(txtForename).SendKeys("John");
-        //    driver.FindElement(txtSurname).SendKeys("John");
-        //    driver.FindElement(txtEmail).SendKeys("John");
-        //    driver.FindElement(txtTelephone).SendKeys("John");
-        //    driver.FindElement(txtMessage).SendKeys("John");
-        //}
+        private readonly By txtForename = By.Id("forename");
+        private readonly By txtEmail = By.Id("email");
+        private readonly By txtMessage = By.Id("message");
+        private readonly By btnSubmit = By.LinkText("Submit");
+        private readonly By forenameErr = By.Id("forename-err");
+        private readonly By emailErr = By.Id("email-err");
+        private readonly By messageErr = By.Id("message-err");
+        private readonly By confirmationMessage = By.XPath("//div[2]/div/div");
+        private readonly By btnBack = By.XPath("//a[@class='btn' and @ng-click='goBack()']");
 
-        //public void SubmitCompletedForm()
-        //{
-        //    CompleteContactForm();
-        //    ClickSubmitButton();
-        //}
+        public void PopulateMandatoryFieldCorrectly()
+        {
+            driver.FindElement(txtForename).SendKeys("Worked");
+            driver.FindElement(txtEmail).SendKeys("worked.example@test.com.au");
+            driver.FindElement(txtMessage).SendKeys("Your website is now easier to use");
+        }
 
-        //public void ClickSubmitButton() => driver.FindElement(btnSubmit).Click();
+        public void PopulateMandatoryFieldIncorrectly()
+        {
+            driver.FindElement(txtForename).SendKeys("");
+            driver.FindElement(txtEmail).SendKeys("worked.example");
+            driver.FindElement(txtMessage).SendKeys("");
+        }
 
-        //public bool IsForenameErr() => driver.FindElement(forenameErr).Displayed;
-   
-        //public bool IsEmailErr() => driver.FindElement(emailErr).Displayed;
+        public void ClickSubmitButton()
+        {
+            driver.FindElement(btnSubmit).Click();
 
-        //public bool IsMessageErr() => driver.FindElement(messageErr).Displayed;
+        }
 
-        //public bool IsBlankForename()
-        //{
-        //    var foreName = driver.FindElement(txtForename1);
+        public bool IsForenameErrorDisplayed()
+        {
 
-        //    var foreNameText = foreName.Text;
-        //    return string.IsNullOrWhiteSpace(foreNameText);
-        //}
+            if (driver.FindElements(forenameErr).Count > 0)
+                return driver.FindElement(forenameErr).Displayed;
 
-        //public bool IsBlankEmail()
-        //{
-        //    var text = driver.FindElement(txtEmail).Text;
+            else
+                return false;
+        }
 
-        //    return string.IsNullOrWhiteSpace(text);
-        //}
+        public bool IsEmailErrorDisplayed()
+        {
 
-        //public bool IsBlankMessage()
-        //{
-        //    var text = driver.FindElement(txtMessage).Text;
+            if (driver.FindElements(emailErr).Count > 0)
+                return driver.FindElement(emailErr).Displayed;
 
-        //    return string.IsNullOrWhiteSpace(text);
-        //}
+            else
+                return false;
+        }
+
+        public bool IsMessageErrorDisplayed()
+        {
+            if (driver.FindElements(messageErr).Count > 0)
+                return driver.FindElement(messageErr).Displayed;
+
+            else
+                return false;
+        }
+
+        public bool IsForenamePopulated() => string.IsNullOrWhiteSpace(driver.FindElement(txtForename).Text);
+
+        public bool IsEmailPolulated() => string.IsNullOrWhiteSpace(driver.FindElement(txtEmail).Text);
+
+        public bool IsMessagePopulated() => string.IsNullOrWhiteSpace(driver.FindElement(txtMessage).Text);
+
+        public string GetSubmissionMessage()
+        {
+            new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until(driver => driver.FindElement(btnBack).Displayed);
+            return driver.FindElement(confirmationMessage).Text;
+        }
 
     }
 }

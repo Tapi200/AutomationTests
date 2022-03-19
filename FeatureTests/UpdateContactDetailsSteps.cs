@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using PlanitAutomationTesting.UIPages;
-using System;
 using TechTalk.SpecFlow;
 
 namespace PlanitAutomationTesting
@@ -11,7 +9,6 @@ namespace PlanitAutomationTesting
     public class UpdateContactDetailsSteps
     {
         private readonly HomePage HomePage = new HomePage();
-        //private readonly ContactPage ContactPage = new ContactPage();
 
         [Given(@"a user is in the contact page")]
         public void GivenAUserIsInTheContactPage()
@@ -49,7 +46,6 @@ namespace PlanitAutomationTesting
             HomePage.PopulateMandatoryFieldCorrectly();
         }
 
-
         [When(@"User populates the manadatory fields")]
         public void WhenUserPopulatesTheManadatoryFields()
         {
@@ -62,6 +58,8 @@ namespace PlanitAutomationTesting
             Assert.IsFalse(HomePage.IsForenameErrorDisplayed());
             Assert.IsFalse(HomePage.IsEmailErrorDisplayed());
             Assert.IsFalse(HomePage.IsEmailErrorDisplayed());
+
+            HomePage.CloseBrowser();
         }
 
         [Given(@"a user is in the shop page")]
@@ -76,7 +74,7 @@ namespace PlanitAutomationTesting
         public void GivenHasSelectedToBuyAFunnyCowWice()
         {
             var numberFunnyCows = 2;
-    
+
             HomePage.BuyFunnyCow(numberFunnyCows);
         }
         
@@ -84,7 +82,7 @@ namespace PlanitAutomationTesting
         public void GivenHasSelectedToBuyAnItemOnce()
         {
            var numberFunnyBunnies = 1;
-           HomePage.BuyFluffyBunny(numberFunnyBunnies);
+            HomePage.BuyFluffyBunny(numberFunnyBunnies);
         }
 
         
@@ -106,12 +104,13 @@ namespace PlanitAutomationTesting
             HomePage.NavigateToCartPage();
         }
         
-
         [Then(@"a successful submission message is displayed")]
         public void ThenASuccessfulSubmissionMessageIsDisplayed()
         {
             var alertMessage = HomePage.GetSubmissionMessage();
             Assert.AreEqual("Thanks Worked, we appreciate your feedback.", alertMessage, "A successful submission message has not been received");
+
+            HomePage.CloseBrowser();
         }
         
         [Then(@"validation errors are populated")]
@@ -120,6 +119,8 @@ namespace PlanitAutomationTesting
             Assert.IsTrue(HomePage.IsForenameErrorDisplayed());
             Assert.IsTrue(HomePage.IsEmailErrorDisplayed());
             Assert.IsTrue(HomePage.IsEmailErrorDisplayed());
+
+            HomePage.CloseBrowser();
         }
         
         [Then(@"the selected items are in the cart")]
@@ -128,6 +129,8 @@ namespace PlanitAutomationTesting
             HomePage.NavigateToCartPage();
             Assert.AreEqual(2, HomePage.GetFunnyCowQuantity(), "Quantity of Funny Cows in Cart do not match client selection");
             Assert.AreEqual(1, HomePage.GetFluffyBunnyQuantity(), "Quantity of Fluffy Bunnies in Cart do not match client selection");
+
+            HomePage.CloseBrowser();
         }
     }
 }
