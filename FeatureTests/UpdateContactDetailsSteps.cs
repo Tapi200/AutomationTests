@@ -70,7 +70,7 @@ namespace PlanitAutomationTesting
             HomePage.NavigateToShopPage();
         }
         
-        [Given(@"has selected to buy two Funny Cows")]
+        [When(@"has selected to buy two Funny Cows")]
         public void GivenHasSelectedToBuyAFunnyCowWice()
         {
             var numberFunnyCows = 2;
@@ -78,7 +78,7 @@ namespace PlanitAutomationTesting
             HomePage.BuyFunnyCow(numberFunnyCows);
         }
         
-        [Given(@"has selected to buy a Fluffy Bunny")]
+        [When(@"has selected to buy a Fluffy Bunny")]
         public void GivenHasSelectedToBuyAnItemOnce()
         {
            var numberFunnyBunnies = 1;
@@ -97,13 +97,7 @@ namespace PlanitAutomationTesting
         {
             HomePage.PopulateMandatoryFieldIncorrectly();
         }
-        
-        [When(@"the user selects the cart menu")]
-        public void WhenTheUserSelectsTheCartMenu()
-        {
-            HomePage.NavigateToCartPage();
-        }
-        
+      
         [Then(@"a successful submission message is displayed")]
         public void ThenASuccessfulSubmissionMessageIsDisplayed()
         {
