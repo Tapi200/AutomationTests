@@ -9,9 +9,13 @@ namespace PlanitAutomationTesting.UIPages
 
     public class HomePage
     {
+        #region Elements
         public IWebDriver driver;
         //HomeElements
-        
+        private readonly By home = By.Id("nav-home");
+        private readonly By contact = By.Id("nav-contact");
+        private readonly By shop = By.Id("nav-shop");
+        private readonly By cart = By.Id("nav-cart");
 
         //ContactPageElements
         private readonly By txtForename = By.Id("forename");
@@ -32,7 +36,9 @@ namespace PlanitAutomationTesting.UIPages
         private readonly By funnyCowQuantity = By.XPath("//form/table/tbody/tr[1]/td[3]/input");
         private readonly By fluffyBunnyQuantity = By.XPath("//form/table/tbody/tr[2]/td[3]/input");
 
+        #endregion
 
+        #region Methods
         public void StartBrowser()
         {
             driver = new ChromeDriver();
@@ -44,10 +50,10 @@ namespace PlanitAutomationTesting.UIPages
             driver.Close();
         }
 
-        public void NavigateToHomePage() =>  driver.FindElement(By.Id("nav-home")).Click();
-        public void NavigateToContactPage() => driver.FindElement(By.Id("nav-contact")).Click();
-        public void NavigateToShopPage() => driver.FindElement(By.Id("nav-shop")).Click();
-        public void NavigateToCartPage() => driver.FindElement(By.Id("nav-cart")).Click();
+        public void NavigateToHomePage() =>  driver.FindElement(home).Click();
+        public void NavigateToContactPage() => driver.FindElement(contact).Click();
+        public void NavigateToShopPage() => driver.FindElement(shop);
+        public void NavigateToCartPage() => driver.FindElement(cart).Click();
         
         public void PopulateMandatoryFieldCorrectly()
         {
@@ -128,7 +134,7 @@ namespace PlanitAutomationTesting.UIPages
             return number;
         }
 
- 
+        #endregion
 
     }
 }
