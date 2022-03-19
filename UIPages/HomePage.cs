@@ -45,13 +45,9 @@ namespace PlanitAutomationTesting.UIPages
         }
 
         public void NavigateToHomePage() =>  driver.FindElement(By.Id("nav-home")).Click();
-
         public void NavigateToContactPage() => driver.FindElement(By.Id("nav-contact")).Click();
-        
         public void NavigateToShopPage() => driver.FindElement(By.Id("nav-shop")).Click();
-
         public void NavigateToCartPage() => driver.FindElement(By.Id("nav-cart")).Click();
-
         
         public void PopulateMandatoryFieldCorrectly()
         {
@@ -67,30 +63,16 @@ namespace PlanitAutomationTesting.UIPages
             driver.FindElement(txtMessage).SendKeys("");
         }
 
-        public void ClickSubmitButton()
-        {
-            driver.FindElement(btnSubmit).Click();
-
-        }
+        public void ClickSubmitButton() => driver.FindElement(btnSubmit).Click();
 
         public bool IsForenameErrorDisplayed()
         {
-
-            if (driver.FindElements(forenameErr).Count > 0)
-                return driver.FindElement(forenameErr).Displayed;
-
-            else
-                return false;
+            return driver.FindElements(forenameErr).Count > 0 && driver.FindElement(forenameErr).Displayed;
         }
 
         public bool IsEmailErrorDisplayed()
         {
-
-            if (driver.FindElements(emailErr).Count > 0)
-                return driver.FindElement(emailErr).Displayed;
-
-            else
-                return false;
+            return driver.FindElements(emailErr).Count > 0 && driver.FindElement(emailErr).Displayed;
         }
 
         public bool IsMessageErrorDisplayed()
