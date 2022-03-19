@@ -50,11 +50,11 @@ namespace PlanitAutomationTesting.UIPages
             driver.Close();
         }
 
-        public void NavigateToHomePage() =>  driver.FindElement(home).Click();
+        public void NavigateToHomePage() => driver.FindElement(home).Click();
         public void NavigateToContactPage() => driver.FindElement(contact).Click();
-        public void NavigateToShopPage() => driver.FindElement(shop);
+        public void NavigateToShopPage() => driver.FindElement(shop).Click();
         public void NavigateToCartPage() => driver.FindElement(cart).Click();
-        
+
         public void PopulateMandatoryFieldCorrectly()
         {
             driver.FindElement(txtForename).SendKeys("Worked");
