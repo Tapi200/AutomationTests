@@ -98,7 +98,7 @@ namespace PlanitAutomationTesting.UIPages
 
         public string GetSubmissionMessage()
         {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until(driver => driver.FindElement(btnBack).Displayed);
+            bool IsConfirmationPageDisplayed = new WebDriverWait(driver, TimeSpan.FromSeconds(60)).Until(driver => driver.FindElement(btnBack).Displayed);
             return driver.FindElement(confirmationMessage).Text;
         }
 
